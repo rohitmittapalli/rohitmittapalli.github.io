@@ -1,0 +1,10 @@
+```bash
+# No dependencies are required for a static HTML/CSS site.
+# To serve the site locally, you can use Python's built-in HTTP server.
+
+# For Python 3.x
+python3 -m http.server
+
+# For Python 2.x
+python -m SimpleHTTPServer
+```

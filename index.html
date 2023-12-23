@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohit Mittapalli - Professional Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="book.css"> <!-- Include the book CSS file -->
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-card-wrapper">
+            <div class="profile-picture">
+                <img src="rohit.jpeg" alt="Rohit Mittapalli" class="profile-img">
+            </div>
+            <div class="card">
+                <div class="header">
+                    <h1>Rohit Mittapalli</h1>
+                    <h2>Software Engineer</h2>
+                    <h3>San Francisco, CA</h3>
+                </div>
+                <div class="content">
+                    <p>Work on data-related problems at <a href="https://www.applied.co" target="_blank" class="company-link">Applied Intuition</a>. Been working with <strong>Apache Spark</strong>, <strong>Apache Hudi</strong>, <strong>Terraform</strong>, <strong>Postgres</strong> on <strong>Kubernetes</strong> clusters across all cloud providers. New things coming soon.</p>
+                </div>
+                <div class="links">
+                    <div class="email-link" onmouseover="showEmailPopup()" onmouseout="hideEmailPopup()">email
+                        <span class="popuptext" id="emailPopup">
+                            <span onclick="copyToClipboard()">rohit.mittapalli@gmail.com</span>
+                            <img src="clipboard-icon.png" alt="Copy to clipboard">
+                        </span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/rohitmittapalli">linkedin</a>
+                    <a href="https://github.com/rohitmittapalli">github</a>
+                    <a href="https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ">google scholar</a>
+                    <a href="#" class="books-link">books</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add a hidden popup div for book reviews -->
+    <div class="book-popup">
+      <div class="book-list" id="bookList">
+          <!-- Book cards will be inserted here -->
+      </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+    <script src="book.js"></script> <!-- Include the book JavaScript file -->
+</body>
+</html>
+

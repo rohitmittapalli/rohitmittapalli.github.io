@@ -1,0 +1,138 @@
+To create a personal website for Rohit Mittapalli, we will need the following files:
+
+- `index.html`: The main HTML file for the website.
+- `styles.css`: The CSS file for styling the website.
+- `resume.pdf`: A placeholder PDF file for Rohit's resume.
+
+Let's start with the `index.html` file:
+
+index.html
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohit Mittapalli - Software Engineer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Rohit Mittapalli</h1>
+        <p>Software Engineer at Applied Intuition</p>
+    </header>
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I'm a software engineer at Applied Intuition, working on the data platform team. I specialize in technologies such as Terraform, Spark, Apache Hudi, and Python.</p>
+            <p>Based in San Francisco, California, I'm passionate about building scalable and efficient data systems.</p>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:rohit.mittapalli@gmail.com">rohit.mittapalli@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/rohitmittapalli" target="_blank">www.linkedin.com/in/rohitmittapalli</a></p>
+            <p>GitHub: <a href="https://github.com/rohitmittapalli" target="_blank">https://github.com/rohitmittapalli</a></p>
+            <p>Resume: <a href="resume.pdf" target="_blank">Download Resume</a></p>
+        </section>
+        <section id="books">
+            <h2>Technical Books Read This Year</h2>
+            <ul>
+                <li><strong>"Designing Data-Intensive Applications"</strong> by Martin Kleppmann</li>
+                <li><strong>"Learning GraphQL"</strong> by Eve Porcello and Alex Banks</li>
+                <li><strong>"High Performance Spark"</strong> by Holden Karau, Rachel Warren, and Anya Bida</li>
+                <li><strong>"Building Microservices"</strong> by Sam Newman</li>
+                <li><strong>"A Philosophy of Software Design, 2nd Edition"</strong> by John Ousterhout</li>
+                <li><strong>"Designing Event-Driven Systems"</strong></li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Rohit Mittapalli</p>
+    </footer>
+</body>
+</html>
+```
+
+Next, we'll create the `styles.css` file to style the website:
+
+styles.css
+```css
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
+}
+
+header, main, footer {
+    max-width: 960px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header p {
+    margin: 5px 0;
+}
+
+section {
+    background: #fff;
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+section h2 {
+    color: #333;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #333;
+    color: #fff;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 5px 0;
+}
+
+ul li strong {
+    color: #007bff;
+}
+```
+
+Lastly, we'll create a placeholder `resume.pdf` file. Since we cannot create an actual PDF file with code here, please replace this with the actual resume file.
+
+resume.pdf
+```
+This is a placeholder for Rohit Mittapalli's resume. Please replace this file with the actual PDF resume.
+```
+
+This concludes a fully working implementation.

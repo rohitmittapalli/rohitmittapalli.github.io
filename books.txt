@@ -1,0 +1,4 @@
+Image: books/ddia.jpeg
+Title: "Designing Data-Intensive Applications" by Martin Kleppmann
+Author: Martin Kleppmann
+Review: A comprehensive must-read, Kleppmann's book expertly delves into data systems, making complex concepts accessible.
