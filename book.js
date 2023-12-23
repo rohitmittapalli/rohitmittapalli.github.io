@@ -25,41 +25,73 @@ document.addEventListener('click', function (event) {
 });
 
 // book.js
-document.addEventListener("DOMContentLoaded", function () {
-    // Fetch the book data from the text file (books.txt)
-    fetch("https://raw.githubusercontent.com/rohitmittapalli/website/main/books.txt")
-        .then(response => response.text())
-        .then(data => {
-            // Split the data into individual book entries
-            const bookEntries = data.split("\n\n");
+// Function to parse book data from text
+function parseBooks(text) {
+  const books = [];
+  const bookDataArray = text.split('\n\n');
 
-            console.log(bookEntries);
-            // Create a container to hold the book cards
-            const bookList = document.getElementById("bookList");
+  for (const bookData of bookDataArray) {
+    const book = {};
+    const lines = bookData.split('\n');
 
-            // Iterate through book entries and create cards
-            bookEntries.forEach(entry => {
-                const bookCard = document.createElement("div");
-                bookCard.classList.add("book-card");
+    for (const line of lines) {
+      const [key, value] = line.split(': ');
+      book[key] = value;
+    }
 
-                // Parse book details from the entry
-                const lines = entry.split("\n");
-                lines.forEach(line => {
-                    const [key, value] = line.split(": ");
-                    if (key && value) {
-                        const detail = document.createElement("p");
-                        detail.classList.add(key.toLowerCase());
-                        detail.textContent = value;
-                        bookCard.appendChild(detail);
-                    }
-                });
+    books.push(book);
+  }
 
-                // Append the book card to the container
-                bookList.appendChild(bookCard);
-            });
-        })
-        .catch(error => {
-            console.error("Error fetching book data: " + error);
-        });
-});
+  return books;
+}
+
+// Function to create book cards
+function createBookCards(books) {
+  const container = document.getElementById('book-container');
+
+  books.forEach((book) => {
+    const bookCard = document.createElement('div');
+    bookCard.classList.add('book-card');
+
+    const bookImage = document.createElement('img');
+    bookImage.classList.add('book-image'); // Add the book-image class
+    bookImage.src = book['Image'];
+    bookImage.alt = book['Title'];
+
+    const bookDetails = document.createElement('div');
+    bookDetails.classList.add('book-details');
+
+    const bookTitle = document.createElement('h3');
+    bookTitle.classList.add('book-title');
+    bookTitle.textContent = book['Title'];
+
+    const bookAuthor = document.createElement('p');
+    bookAuthor.classList.add('book-author');
+    bookAuthor.textContent = `by ${book['Author']}`;
+
+    const bookReview = document.createElement('p');
+    bookReview.classList.add('book-review');
+    bookReview.textContent = book['Review'];
+
+    bookDetails.appendChild(bookTitle);
+    bookDetails.appendChild(bookAuthor);
+    bookDetails.appendChild(bookReview);
+
+    bookCard.appendChild(bookImage);
+    bookCard.appendChild(bookDetails);
+
+    container.appendChild(bookCard);
+  });
+}
+
+// Fetch the book data from the URL
+fetch('https://raw.githubusercontent.com/rohitmittapalli/website/main/books.txt')
+  .then((response) => response.text())
+  .then((text) => {
+    const books = parseBooks(text);
+    createBookCards(books);
+  })
+  .catch((error) => {
+    console.error('Error fetching book data:', error);
+  });
 
