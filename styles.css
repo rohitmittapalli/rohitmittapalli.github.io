@@ -7,7 +7,7 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #f4f4f4; /* You can adjust this color to match the lightest color in your new background */
-    background-image: url('https://github.com/rohitmittapalli/website/blob/main/background.jpg?raw=true'); /* Update with the actual path to the new image */
+    background-image: url('https://github.com/rohitmittapalli/website/blob/main/background.png?raw=true'); /* Update with the actual path to the new image */
     background-repeat: no-repeat;
     background-size: cover; /* This will ensure that the background covers the entire viewport */
     background-attachment: fixed; /* Optional: keeps the background fixed in place during scroll */
