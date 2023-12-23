@@ -1,38 +1,36 @@
-/* book.css */
-
-/* General Styles */
 .book-popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    max-width: 80%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  max-width: 40%; /* Adjust the maximum width */
+  max-height: 35vh; /* Adjust the maximum height and make it scrollable */
+  overflow-y: auto; /* Add scroll for overflow content */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
 }
 
-/* Book Card Styles */
-/* Define styling for book cards */
+@media (max-width: 768px) {
+    .book-popup {
+        max-width: 100%;
+        min-width: 100%;
+    }
+}
+
+
 .book-card {
   display: flex;
-  flex-direction: row; /* Change to row to align image to the left */
-  align-items: flex-start; /* Adjust alignment */
-  background-color: white; /* Remove background color */
+  flex-direction: row;
+  align-items: flex-start;
+  background-color: white;
   border-radius: 5px;
   margin: 10px;
-  padding: 10px;
+  padding: 5px; /* Reduce padding */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s;
 }
 
-/* Remove hover effect */
-.book-card:hover {
-  transform: none;
-}
 
 /* Styling for book titles */
 .book-title {
@@ -61,8 +59,8 @@
 
 /* Styling for book images */
 .book-image {
-  width: 120px;
-  height: 180px;
+  width: 80px;
+  height: 120px;
   object-fit: cover;
   border-radius: 5px;
   margin-right: 10px; /* Add margin to separate image from text */

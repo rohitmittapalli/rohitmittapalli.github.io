@@ -27,4 +27,3 @@ Image: https://github.com/rohitmittapalli/website/blob/main/books/phil.jpeg?raw=
 Title: "A Philosophy of Software Design, 2nd Edition"
 Author: John Ousterhout
 Review: An excellent read for junior developers, offering valuable insights on writing clear, maintainable code. The first half is particularly strong, though the latter half tends to echo earlier points without adding much new.
-

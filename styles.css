@@ -42,6 +42,12 @@ body {
     object-fit: cover;
 }
 
+@media (max-width: 768px) {
+    .profile-picture {
+        display: none;
+    }
+}
+
 .card {
     background-color: white; /* Match the card background to the wrapper */
     border-radius: 10px; /* Optional: rounded corners */
