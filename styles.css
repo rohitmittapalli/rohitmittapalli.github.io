@@ -1,5 +1,4 @@
 body {
-    background-color: #f4f4f4;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -7,7 +6,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #f4f4f4; /* You can adjust this color to match the lightest color in your new background */
+    background-image: url('https://github.com/rohitmittapalli/website/blob/main/background.jpg?raw=true'); /* Update with the actual path to the new image */
+    background-repeat: no-repeat;
+    background-size: cover; /* This will ensure that the background covers the entire viewport */
+    background-attachment: fixed; /* Optional: keeps the background fixed in place during scroll */
 }
+
 
 .profile-container {
     display: flex;
@@ -19,8 +24,8 @@ body {
 .profile-card-wrapper {
     display: flex;
     align-items: center;
-    background-color: #f0f0f0; /* Shaded background color */
-    border-radius: 10px; /* Optional: rounded corners */
+    color: #333;
+    background-color: #f4f4f4; /* You can adjust this color to match the lightest color in your new background */
     padding: 20px; /* Space around the card and profile picture */
     max-width: 600px; /* Adjust the maximum width of the card */
     width: 100%; /* Ensure the card is responsive */
@@ -29,7 +34,6 @@ body {
 
 .profile-picture {
     flex-shrink: 0; /* Prevent the image from being cut off */
-    border-radius: 50%;
     overflow: hidden; /* Ensures the image is contained within the border-radius */
     margin-right: 20px; /* Space between the picture and the card */
     line-height: 0; /* Removes any extra line height around the image */
@@ -49,8 +53,7 @@ body {
 }
 
 .card {
-    background-color: white; /* Match the card background to the wrapper */
-    border-radius: 10px; /* Optional: rounded corners */
+    background-color: #f4f4f4; /* You can adjust this color to match the lightest color in your new background */
     padding: 20px;
     flex-grow: 1; /* Allow the card to grow to fill the available space */
 }
@@ -132,7 +135,7 @@ body {
 .email-link .popuptext {
     visibility: hidden;
     width: auto;
-    background-color: white;
+    background-color: #f4f4f4; /* You can adjust this color to match the lightest color in your new background */
     color: #888; /* Softer grey color */
     text-align: left;
     border-radius: 6px;
@@ -165,7 +168,6 @@ body {
     background: #555;
     color: #fff;
     text-align: center;
-    border-radius: 6px;
     font-size: 14px;
     z-index: 1000;
     border: 1px solid lightgrey;

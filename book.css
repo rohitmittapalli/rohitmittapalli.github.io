@@ -7,7 +7,6 @@
   max-width: 40%; /* Adjust the maximum width */
   max-height: 35vh; /* Adjust the maximum height and make it scrollable */
   overflow-y: auto; /* Add scroll for overflow content */
-  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 100;
 }
@@ -25,7 +24,6 @@
   flex-direction: row;
   align-items: flex-start;
   background-color: white;
-  border-radius: 5px;
   margin: 10px;
   padding: 5px; /* Reduce padding */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
