@@ -27,7 +27,7 @@ document.addEventListener('click', function (event) {
 // book.js
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch the book data from the text file (books.txt)
-    fetch("books.txt")
+    fetch("https://raw.githubusercontent.com/rohitmittapalli/website/main/books.txt")
         .then(response => response.text())
         .then(data => {
             // Split the data into individual book entries
