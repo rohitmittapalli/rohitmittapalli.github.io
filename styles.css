@@ -27,7 +27,7 @@ body {
     color: #333;
     background-color: #f4f4f4; /* You can adjust this color to match the lightest color in your new background */
     padding: 20px; /* Space around the card and profile picture */
-    max-width: 600px; /* Adjust the maximum width of the card */
+    max-width: 675px; /* Adjust the maximum width of the card */
     width: 100%; /* Ensure the card is responsive */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Shadow for the combined card and profile */
 }
