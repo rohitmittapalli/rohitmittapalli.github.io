@@ -173,3 +173,39 @@ body {
     border: 1px solid lightgrey;
 }
 
+#turtleContainer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%; /* This will stretch the container across the entire bottom of the screen */
+    height: 2x; /* Adjust this to half the height of your turtle GIF */
+    z-index: 1000; /* This ensures the turtle is above other elements */
+}
+
+#turtleGif {
+    position: absolute;
+    bottom: -100px; /* Adjust this so the bottom half of the turtle is hidden */
+    /* Remove any transform or scaling if you do not want to use it */
+}
+
+@keyframes walkAcross {
+    from {
+        right: 100%;
+        transform:  translateX(275%);
+    }
+    to {
+        right: 100%;
+        transform:  translateX(-100%);
+    }
+}
+
+#turtleGif {
+    animation: walkAcross 500s linear infinite; /* Adjust the timing as needed */
+}
+
+@media (max-width: 768px) {
+    #turtleContainer {
+        display: none; /* Hide the turtle on smaller screens */
+    }
+}
+

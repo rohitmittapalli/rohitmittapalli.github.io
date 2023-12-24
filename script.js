@@ -32,3 +32,10 @@ function copyToClipboard() {
     }, 1500);
 }
 
+
+// Listen for each animation iteration on the turtle GIF
+document.getElementById('turtleGif').addEventListener('animationiteration', function() {
+    // This will fire after each iteration of the animation
+    this.style.right = '100%'; // Resets the turtle to the right
+});
+
