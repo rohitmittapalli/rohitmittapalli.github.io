@@ -50,15 +50,14 @@
         }
 
         h1, h2 {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
         }
 
         h1 {
-            font-size: 2.2em;
+            font-size: 2em;
             margin: 0;
             margin-bottom: 0.2em;
             font-weight: 600;
-            letter-spacing: -0.02em;
         }
 
         h2 {
@@ -99,28 +98,32 @@
             color: var(--accent-color);
         }
 
-        .content a {
+        .content a, .company a {
             color: var(--text-color);
             text-decoration: none;
             background: linear-gradient(to bottom, transparent 95%, var(--accent-color) 95%);
             transition: all 0.2s ease;
         }
 
-        .content a:hover {
+        .content a:hover, .company a:hover {
             color: var(--accent-color);
         }
 
         .tooltip {
             position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             background: var(--accent-color);
             color: white;
-            padding: 5px 10px;
+            padding: 8px 16px;
             border-radius: 3px;
             font-size: 13px;
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.2s;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+            white-space: nowrap;
         }
 
         .last-updated {
@@ -164,7 +167,7 @@
         <div class="links">
             <div><a href="#" data-clipboard="rohit.mittapalli@gmail.com">📧 Email</a></div>
             <div><a href="https://github.com/rohitmittapalli" target="_blank">💻 GitHub</a></div>
-            <div><a href="https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ" target="_blank">📚 Scholar</a></div>
+            <div><a href="https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ" target="_blank">📚 Google Scholar</a></div>
             <div><a href="https://www.linkedin.com/in/rohitmittapalli" target="_blank">👥 LinkedIn</a></div>
             <div><a href="resume.pdf" target="_blank">📄 Resume</a></div>
         </div>
@@ -183,9 +186,8 @@
                 navigator.clipboard.writeText(text);
                 
                 const tooltip = document.getElementById('tooltip');
+                tooltip.textContent = `Copied ${text} to clipboard`;
                 tooltip.style.opacity = '1';
-                tooltip.style.left = e.pageX + 10 + 'px';
-                tooltip.style.top = e.pageY + 10 + 'px';
                 
                 setTimeout(() => {
                     tooltip.style.opacity = '0';
