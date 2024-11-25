@@ -12,10 +12,49 @@
             --text-color: #1a2634;
             --subtle-color: #6c7a89;
             --grid-color: rgba(0, 0, 0, 0.06);
+            --container-bg: white;
+            --link-hover: #2d3e50;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #e1e1e1;
+                --accent-color: #a8b9cc;
+                --background-color: #1a1a1a;
+                --text-color: #e1e1e1;
+                --subtle-color: #888;
+                --grid-color: rgba(255, 255, 255, 0.06);
+                --container-bg: #1a1a1a;
+                --link-hover: #a8b9cc;
+            }
+        }
+
+        /* Light theme (default) */
+        :root[data-theme="light"] {
+            --primary-color: #1a2634;
+            --accent-color: #2d3e50;
+            --background-color: #f8f9fa;
+            --text-color: #1a2634;
+            --subtle-color: #6c7a89;
+            --grid-color: rgba(0, 0, 0, 0.06);
+            --container-bg: white;
+            --link-hover: #2d3e50;
+        }
+        
+        /* Dark theme */
+        :root[data-theme="dark"] {
+            --primary-color: #e1e1e1;
+            --accent-color: #a8b9cc;
+            --background-color: #1a1a1a;
+            --text-color: #e1e1e1;
+            --subtle-color: #888;
+            --grid-color: rgba(255, 255, 255, 0.06);
+            --container-bg: #1a1a1a;
+            --link-hover: #a8b9cc;
         }
 
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
             line-height: 1.6;
             max-width: 700px;
             margin: 40px auto;
@@ -26,21 +65,23 @@
                 linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
                 linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
             background-size: 16px 16px;
-            font-size: 15px;
+            font-size: 14px;
+            transition: color 0.3s ease, background-color 0.3s ease;
         }
 
         .container {
-            background: white;
+            background: var(--container-bg);
             padding: 40px;
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.12);
+            border: 1px solid var(--grid-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         @media (max-width: 600px) {
             body {
                 margin: 0;
                 padding: 0;
-                background: white;
+                background: var(--container-bg);
             }
             .container {
                 padding: 20px;
@@ -67,6 +108,7 @@
             border-bottom: 1px solid var(--grid-color);
             padding-bottom: 0.3em;
             margin-top: 1.5em;
+            transition: border-color 0.3s ease;
         }
 
         .company {
@@ -95,7 +137,7 @@
         }
 
         .links a:hover {
-            color: var(--accent-color);
+            color: var(--link-hover);
         }
 
         .content a, .company a {
@@ -106,7 +148,7 @@
         }
 
         .content a:hover, .company a:hover {
-            color: var(--accent-color);
+            color: var(--link-hover);
         }
 
         .tooltip {
@@ -115,7 +157,7 @@
             top: 50%;
             transform: translate(-50%, -50%);
             background: var(--accent-color);
-            color: white;
+            color: var(--container-bg);
             padding: 8px 16px;
             border-radius: 3px;
             font-size: 13px;
@@ -126,14 +168,26 @@
             white-space: nowrap;
         }
 
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            border-top: 1px solid var(--grid-color);
+            padding-top: 20px;
+            transition: border-color 0.3s ease;
+        }
+
         .last-updated {
             color: var(--subtle-color);
             font-size: 0.9em;
-            margin-top: 40px;
-            text-align: right;
             font-style: italic;
-            border-top: 1px solid var(--grid-color);
-            padding-top: 20px;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            user-select: none;
+            font-size: 1.2em;
         }
 
         p {
@@ -172,13 +226,16 @@
             <div><a href="resume.pdf" target="_blank">📄 Resume</a></div>
         </div>
 
-        <div class="last-updated">Last Updated: November 2024</div>
+        <div class="footer">
+            <div class="last-updated">Last Updated: November 2024</div>
+            <div class="theme-toggle">☀️</div>
+        </div>
     </div>
 
     <div class="tooltip" id="tooltip">Copied to clipboard!</div>
 
     <script>
-        // Only handle clipboard for email
+        // Email clipboard functionality
         document.querySelectorAll('a[data-clipboard]').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -193,6 +250,41 @@
                     tooltip.style.opacity = '0';
                 }, 1000);
             });
+        });
+
+        // Theme toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const root = document.documentElement;
+        
+        // Function to check if system is in dark mode
+        const systemPrefersDark = () => 
+            window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Function to set theme
+        const setTheme = (isDark) => {
+            if (isDark) {
+                root.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                root.setAttribute('data-theme', 'light');
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            }
+        };
+
+        // Initialize theme based on localStorage or system preference
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+            setTheme(storedTheme === 'dark');
+        } else {
+            setTheme(systemPrefersDark());
+        }
+
+        // Toggle theme on click
+        themeToggle.addEventListener('click', () => {
+            const isDark = root.getAttribute('data-theme') === 'dark';
+            setTheme(!isDark);
         });
     </script>
 </body>
