@@ -3,52 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohit Mittapalli - Professional Profile</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="book.css"> <!-- Include the book CSS file -->
+    <title>Rohit Mittapalli</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #333;
+        }
+        img {
+            max-width: 200px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .links a {
+            display: block;
+            color: #555;
+            text-decoration: none;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .links a:hover {
+            color: #000;
+        }
+        .tooltip {
+            position: fixed;
+            background: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        h1 {
+            margin-bottom: 5px;
+        }
+        .company {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .content a {
+            color: #555;
+            text-decoration: none;
+        }
+        .content a:hover {
+            color: #000;
+        }
+    </style>
 </head>
 <body>
-    <div class="profile-container">
-        <div class="profile-card-wrapper">
-            <div class="profile-picture">
-                <img src="rohit.jpeg" alt="Rohit Mittapalli" class="profile-img">
-            </div>
-            <div class="card">
-                <div class="header">
-                    <h1>Rohit Mittapalli</h1>
-                    <h3>San Francisco, CA</h3>
-                </div>
-                <div class="content">
-                    <p>Focused on data-related problems at <a href="https://www.applied.co" target="_blank" class="company-link">Applied Intuition</a>. Been working on <strong>Apache Spark</strong>, <strong>Apache Hudi</strong>, <strong>Terraform</strong>, <strong>Postgres</strong> on <strong>Kubernetes</strong> clusters across all cloud providers. New things coming soon.</p>
-                </div>
-                <div class="links">
-                    <div class="email-link" onmouseover="showEmailPopup()" onmouseout="hideEmailPopup()">email
-                        <span class="popuptext" id="emailPopup">
-                            <span onclick="copyToClipboard()">rohit.mittapalli@gmail.com</span>
-                            <img src="clipboard-icon.png" alt="Copy to clipboard">
-                        </span>
-                    </div>
-                    <a href="resume.pdf" type="application/pdf">resume</a>
-                    <a href="https://www.linkedin.com/in/rohitmittapalli">linkedin</a>
-                    <a href="https://github.com/rohitmittapalli">github</a>
-                    <a href="https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ">google scholar</a>
-                    <a href="#" class="books-link">recently read</a>
+    <h1>Rohit Mittapalli</h1>
+    <div class="company">Work at <a href="https://www.anthropic.com" target="_blank">Anthropic</a> - focused on scalable inference</div>
+    
+    <img src="rohit.jpeg" alt="Rohit Mittapalli">
+    
+    <div class="content">
+        <h2>About Me</h2>
+        <p>I'm currently working on scalable inference at <a href="https://www.anthropic.com" target="_blank">Anthropic</a>. Previously, I was at <a href="https://www.appliedintuition.com" target="_blank">Applied Intuition</a> where I focused on building and scaling our data infrastructure, particularly working with Apache Spark and <a href="https://hudi.apache.org" target="_blank">Apache Hudi</a>. Before that, I worked on search infrastructure at <a href="https://www.uber.com" target="_blank">Uber</a>.</p>
+        
+        <p>I graduated from <a href="https://www.gatech.edu" target="_blank">Georgia Tech</a> in 2021, where I had the privilege of researching under <a href="https://faculty.cc.gatech.edu/~judy/" target="_blank">Dr. Judy Hoffman</a>, focusing on computer vision and transfer learning across CV tasks.</p>
 
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="turtleContainer">
-        <img src="https://github.com/rohitmittapalli/website/blob/main/turtle.gif?raw=true" alt="Turtle" id="turtleGif">
+        <p>I'm always excited to connect with people who share my interests in scalable systems, machine learning, and technology. Feel free to reach out!</p>
     </div>
 
-    <!-- Add a hidden popup div for book reviews -->
-    <div class="book-popup" id="book-container">
+    <h2>Links</h2>
+    <div class="links">
+        <a href="resume.pdf" data-clipboard="resume.pdf" download>📄 Resume</a>
+        <a href="#" data-clipboard="https://www.linkedin.com/in/rohitmittapalli">👥 LinkedIn</a>
+        <a href="#" data-clipboard="https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ">📚 Google Scholar</a>
+        <a href="#" data-clipboard="https://github.com/rohitmittapalli">💻 GitHub</a>
+        <a href="#" data-clipboard="rohit.mittapalli@gmail.com">📧 Email</a>
     </div>
 
+    <div class="tooltip" id="tooltip">Copied to clipboard!</div>
 
-    <script src="script.js"></script>
-    <script src="book.js"></script>
+    <script>
+        document.querySelectorAll('.links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.hasAttribute('download')) {
+                    return; // Allow normal download behavior for resume
+                }
+                e.preventDefault();
+                const text = e.target.dataset.clipboard;
+                navigator.clipboard.writeText(text);
+                
+                const tooltip = document.getElementById('tooltip');
+                tooltip.style.opacity = '1';
+                tooltip.style.left = e.pageX + 10 + 'px';
+                tooltip.style.top = e.pageY + 10 + 'px';
+                
+                setTimeout(() => {
+                    tooltip.style.opacity = '0';
+                }, 1000);
+            });
+        });
+    </script>
 </body>
 </html>
-
