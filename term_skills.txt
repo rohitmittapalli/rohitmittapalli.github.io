@@ -1,0 +1,3 @@
+Technical Skills:
+- Languages: Python, Rust, Terrafrom, Java
+- Infrastructure: K8s, Apache Spark, Hudi, GCP/AWS

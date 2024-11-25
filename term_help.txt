@@ -1,0 +1,1 @@
+Available commands:\n\nls - List files\ncat <file> - Display file contents\nclear - Clear terminal\nhelp - Show this help message\npwd - Print working directory\necho <text> - Print text\ndate - Show current date

@@ -1,0 +1,5 @@
+I'm currently working on scalable inference at Anthropic. Previously, I was at Applied Intuition where I focused on building and scaling our data infrastructure, particularly working with Apache Spark and Apache Hudi. Before that, I worked on search infrastructure at Uber.
+
+I graduated from Georgia Tech in 2021, where I had the privilege of researching under Dr. Judy Hoffman, focusing on computer vision and transfer learning across CV tasks.
+
+I'm always excited to connect with people who share similar interests. Feel free to reach out!

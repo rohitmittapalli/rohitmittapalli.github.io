@@ -190,6 +190,178 @@
             font-size: 1.2em;
         }
 
+        /* Terminal styles */
+        .terminal-button {
+            display: none; /* Hide by default on mobile */
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2em;
+            padding: 0;
+            margin: 0;
+            margin-right: 10px;
+        }
+
+        /* Matrix effect styles */
+        @keyframes matrix-rain {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        .matrix-character {
+            position: fixed;
+            color: #0F0;
+            font-family: monospace;
+            font-size: 20px;
+            line-height: 20px;
+            z-index: 1000;
+            pointer-events: none;
+            text-shadow: 0 0 5px #0F0;
+            animation: matrix-rain linear infinite;
+        }
+
+        .footer-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Only show terminal on desktop */
+        @media (min-width: 768px) {
+            .terminal-button {
+                display: block;
+            }
+        }
+
+        .terminal-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 400px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            overflow: hidden; /* Prevent content from spilling out */
+        }
+
+        .terminal-header {
+            background: #2d2d2d;
+            padding: 8px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terminal-title {
+            color: #e1e1e1;
+            font-size: 0.9em;
+        }
+
+        .terminal-close {
+            color: #e1e1e1;
+            cursor: pointer;
+            padding: 0 8px;
+        }
+
+        .terminal-content {
+            padding: 15px;
+            height: calc(100% - 35px);
+            overflow-y: auto;
+            color: #e1e1e1;
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin: 0;
+            position: relative;
+            scroll-padding: 15px;
+        }
+
+        /* Add padding to the top and bottom of scrollable content */
+        .terminal-content::before,
+        .terminal-content::after {
+            content: '';
+            display: block;
+            height: 15px;
+        }
+
+        .terminal-content::-webkit-scrollbar {
+            width: 8px;
+            margin-left: 4px;
+        }
+
+        .terminal-content::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            margin: 15px 0;
+        }
+
+        .terminal-content::-webkit-scrollbar-thumb {
+            background: #4a4a4a;
+            border-radius: 4px;
+            border: 2px solid #1a1a1a;
+        }
+
+        .terminal-content::-webkit-scrollbar-thumb:hover {
+            background: #5a5a5a;
+        }
+
+        .terminal-line {
+            margin: 5px 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .terminal-prompt {
+            color: #50fa7b;
+            display: inline;
+            margin-right: 5px;
+        }
+
+        .input-line {
+            display: flex;
+            margin: 5px 0;
+        }
+
+        .input-line .terminal-prompt {
+            flex-shrink: 0;
+        }
+
+        .terminal-input-wrapper {
+            flex-grow: 1;
+            display: inline;
+        }
+
+        .terminal-input {
+            background: none;
+            border: none;
+            color: #e1e1e1;
+            font-family: inherit;
+            font-size: inherit;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            outline: none;
+        }
+
+        .terminal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
         p {
             margin: 1.5em 0;
         }
@@ -228,11 +400,30 @@
 
         <div class="footer">
             <div class="last-updated">Last Updated: November 2024</div>
-            <div class="theme-toggle">☀️</div>
+            <div class="footer-controls">
+                <span class="terminal-button">⌨️</span>
+                <div class="theme-toggle">☀️</div>
+            </div>
         </div>
     </div>
 
-    <div class="tooltip" id="tooltip">Copied to clipboard!</div>
+    <div class="tooltip" id="tooltip">Copied rohit.mittapalli@gmail.com to clipboard!</div>
+    <div class="terminal-overlay"></div>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-title">rohit@portfolio ~ </div>
+            <div class="terminal-close">×</div>
+        </div>
+        <div class="terminal-content">
+            <div class="terminal-line">Welcome! Type 'help' to see available commands</div>
+            <div class="input-line">
+                <span class="terminal-prompt">rohit@portfolio:~$</span>
+                <span class="terminal-input-wrapper">
+                    <input type="text" class="terminal-input" autofocus>
+                </span>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Email clipboard functionality
@@ -285,6 +476,289 @@
         themeToggle.addEventListener('click', () => {
             const isDark = root.getAttribute('data-theme') === 'dark';
             setTheme(!isDark);
+        });
+
+        // Terminal functionality
+        const terminal = {
+            container: document.querySelector('.terminal-container'),
+            overlay: document.querySelector('.terminal-overlay'),
+            button: document.querySelector('.terminal-button'),
+            closeBtn: document.querySelector('.terminal-close'),
+            content: document.querySelector('.terminal-content'),
+            input: document.querySelector('.terminal-input'),
+            
+            // Command history
+            history: [],
+            historyIndex: -1,
+            currentInput: '',
+
+            // File system simulation
+            fs: {},
+            
+            currentDirectory: '~',
+            
+            // Initialize terminal
+            async init() {
+                // Load terminal files
+                this.fs = {
+                    'help.txt': "Available commands:\n\nls - List files\ncat <file> - Display file contents\nclear - Clear terminal\nhelp - Show this help message\npwd - Print working directory\necho <text> - Print text\ndate - Show current date",
+                    'about.txt': "I'm currently working on scalable inference at Anthropic. Previously, I was at Applied Intuition where I focused on building and scaling our data infrastructure, particularly working with Apache Spark and Apache Hudi. Before that, I worked on search infrastructure at Uber.\n\nI graduated from Georgia Tech in 2021, where I had the privilege of researching under Dr. Judy Hoffman, focusing on computer vision and transfer learning across CV tasks.\n\nI'm always excited to connect with people who share similar interests. Feel free to reach out!",
+                    'easteregg.txt': "🎉 You found the easter egg!\nHere's a secret: Try pressing 'up up down down left right left right b a' anywhere on the site...",
+                    'interests.txt': "- Distributed systems around large language models - in a capacity constrained world how do we make LLMs run faster and more efficiently.\n- Computer vision, specifically in Autonomous vehicles\n- Tools we should be building for LLMs that are sufficiently different from tools for humans\n- Aviation (PPL 05/24)\n- Formula 1",
+                    'skills.txt': "Technical Skills:\n- Languages: Python, Rust, Terrafrom, Java\n- Infrastructure: K8s, Apache Spark, Hudi, GCP/AWS",
+                    'books.txt': "Title: The Last Lecture\nTitle: A Promised Land\nTitle: Born a Crime\nTitle: Radical Candor\nTitle: Designing Data-Intensive Applications\nTitle: Building Microservices, Sam Newman\nTitle: A Philosophy of Software Design, John Ousterhout"
+                };
+
+                this.button.addEventListener('click', () => this.show());
+                this.closeBtn.addEventListener('click', () => this.hide());
+                this.overlay.addEventListener('click', () => this.hide());
+                
+                // Enhanced input handling
+                this.input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        this.handleCommand(e);
+                    } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                        this.navigateHistory(e);
+                        e.preventDefault();
+                    } else if (e.key === 'Tab') {
+                        this.handleTabCompletion(e);
+                        e.preventDefault();
+                    }
+                });
+                
+                // Close on Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.isVisible()) {
+                        this.hide();
+                    }
+                });
+            },
+            
+            // Show terminal
+            show() {
+                this.container.style.display = 'block';
+                this.overlay.style.display = 'block';
+                this.input.focus();
+            },
+            
+            // Hide terminal
+            hide() {
+                this.container.style.display = 'none';
+                this.overlay.style.display = 'none';
+            },
+            
+            // Check if terminal is visible
+            isVisible() {
+                return this.container.style.display === 'block';
+            },
+            
+            // Add new line to terminal
+            addLine(text, isCommand = false) {
+                const line = document.createElement('div');
+                line.className = 'terminal-line';
+                
+                if (isCommand) {
+                    // For commands, include the prompt
+                    line.innerHTML = `<span class="terminal-prompt">rohit@portfolio:${this.currentDirectory}$</span> ${text}`;
+                } else {
+                    // For output, just show the text
+                    line.textContent = text;
+                }
+                
+                // Insert before the input line
+                this.content.insertBefore(line, this.content.lastElementChild);
+            },
+            
+            // Clear terminal
+            clear() {
+                const children = Array.from(this.content.children);
+                children.slice(0, -1).forEach(child => child.remove());
+            },
+
+            // Handle command history navigation
+            navigateHistory(e) {
+                if (this.history.length === 0) return;
+
+                if (e.key === 'ArrowUp') {
+                    // Save current input if we're starting to navigate
+                    if (this.historyIndex === -1) {
+                        this.currentInput = this.input.value;
+                    }
+                    this.historyIndex = Math.min(this.historyIndex + 1, this.history.length - 1);
+                } else if (e.key === 'ArrowDown') {
+                    this.historyIndex = Math.max(this.historyIndex - 1, -1);
+                }
+
+                // Restore current input if we've moved past the end of history
+                if (this.historyIndex === -1) {
+                    this.input.value = this.currentInput;
+                } else {
+                    this.input.value = this.history[this.history.length - 1 - this.historyIndex];
+                }
+
+                // Move cursor to end of input
+                setTimeout(() => {
+                    this.input.selectionStart = this.input.selectionEnd = this.input.value.length;
+                }, 0);
+            },
+
+            // Handle tab completion
+            handleTabCompletion(e) {
+                const input = this.input.value;
+                const [cmd, ...args] = input.trim().split(' ');
+                
+                // Only complete for commands that work with files
+                if (['cat'].includes(cmd) && args.length <= 1) {
+                    const prefix = args[0] || '';
+                    const matches = Object.keys(this.fs).filter(file => 
+                        file.startsWith(prefix)
+                    );
+
+                    if (matches.length === 1) {
+                        // Single match - complete it
+                        this.input.value = `${cmd} ${matches[0]}`;
+                    } else if (matches.length > 1 && prefix) {
+                        // Multiple matches - show possibilities
+                        this.addLine(`Possible completions:`);
+                        this.addLine(matches.join('  '));
+                    }
+                }
+            },
+            
+            // Handle command execution
+            handleCommand(e) {
+                if (e.key !== 'Enter') return;
+                
+                const command = this.input.value.trim();
+                if (!command) return;
+                
+                // Add command to history
+                this.history.push(command);
+                this.historyIndex = -1;
+                this.currentInput = '';
+                
+                // Add command to terminal
+                this.addLine(command, true);
+                
+                // Parse command and arguments
+                const [cmd, ...args] = command.split(' ');
+                
+                // Execute command
+                switch (cmd.toLowerCase()) {
+                    case 'help':
+                        this.addLine(this.fs['help.txt'] || 'Help file not found.');
+                        break;
+                        
+                    case 'clear':
+                        this.clear();
+                        break;
+                        
+                    case 'ls':
+                        this.addLine(Object.keys(this.fs).join('  '));
+                        break;
+                        
+                    case 'cat':
+                        if (args.length === 0) {
+                            this.addLine('Usage: cat <file>');
+                        } else if (this.fs[args[0]]) {
+                            this.addLine(this.fs[args[0]]);
+                        } else {
+                            this.addLine(`cat: ${args[0]}: No such file or directory`);
+                        }
+                        break;
+                        
+                    case 'pwd':
+                        this.addLine(`/home/rohit/${this.currentDirectory}`);
+                        break;
+                        
+                    case 'echo':
+                        this.addLine(args.join(' '));
+                        break;
+                        
+                    case 'date':
+                        this.addLine(new Date().toString());
+                        break;
+                        
+                    default:
+                        this.addLine(`Command not found: ${cmd}`);
+                }
+                
+                // Clear input
+                this.input.value = '';
+                
+                // Scroll to bottom
+                this.content.scrollTop = this.content.scrollHeight;
+            }
+        };
+        
+        // Initialize terminal
+        terminal.init();
+
+        // Konami code implementation
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        let matrixInterval;
+        let matrixActive = false;
+
+        function createMatrixRain() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃ';
+            const column = document.createElement('div');
+            
+            // Random starting position
+            const startX = Math.random() * window.innerWidth;
+            
+            // Create characters in the column
+            for (let i = 0; i < 20; i++) {
+                const char = document.createElement('div');
+                char.className = 'matrix-character';
+                char.style.left = `${startX}px`;
+                char.style.top = `-${i * 20}px`;
+                char.style.animationDuration = `${2 + Math.random() * 3}s`;
+                char.textContent = characters[Math.floor(Math.random() * characters.length)];
+                document.body.appendChild(char);
+
+                // Remove after animation
+                setTimeout(() => {
+                    char.remove();
+                }, 5000);
+            }
+        }
+
+        function startMatrixEffect() {
+            if (matrixActive) return;
+            matrixActive = true;
+            
+            // Start the matrix effect
+            matrixInterval = setInterval(createMatrixRain, 100);
+
+            // Display easter egg message in terminal if it's open
+            if (terminal.isVisible()) {
+                terminal.addLine('🎮 Konami code activated! The matrix has you...');
+            }
+
+            // Stop after 5 seconds
+            setTimeout(() => {
+                clearInterval(matrixInterval);
+                matrixActive = false;
+            }, 5000);
+        }
+
+        document.addEventListener('keydown', (event) => {
+            // Don't trigger when typing in terminal
+            if (event.target.classList.contains('terminal-input')) {
+                return;
+            }
+            
+            if (event.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                
+                if (konamiIndex === konamiCode.length) {
+                    startMatrixEffect();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
         });
     </script>
 </body>
