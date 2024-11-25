@@ -4,40 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohit Mittapalli</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-serif/0.1.1/font.min.css">
     <style>
         :root {
-            --primary-color: #2C3E50;
-            --accent-color: #34495E;
-            --background-color: #FCFCFC;
-            --text-color: #2C3E50;
-            --subtle-color: #95A5A6;
+            --primary-color: #1a2634;
+            --accent-color: #2d3e50;
+            --background-color: #f8f9fa;
+            --text-color: #1a2634;
+            --subtle-color: #6c7a89;
+            --grid-color: rgba(0, 0, 0, 0.06);
         }
 
         body {
-            font-family: 'Crimson Text', Georgia, serif;
-            line-height: 1.7;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
             max-width: 700px;
-            margin: 60px auto;
-            padding: 0 40px;
+            margin: 40px auto;
+            padding: 0 20px;
             color: var(--text-color);
             background-color: var(--background-color);
             background-image: 
-                linear-gradient(to right, rgba(44, 62, 80, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(44, 62, 80, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
+                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+            background-size: 16px 16px;
             font-size: 15px;
         }
 
         .container {
             background: white;
-            padding: 40px 50px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+            }
+            .container {
+                padding: 20px;
+                box-shadow: none;
+                border: none;
+            }
         }
 
         h1, h2 {
-            font-family: 'Crimson Text', Georgia, serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
 
         h1 {
@@ -52,7 +65,7 @@
             font-size: 1.4em;
             color: var(--accent-color);
             font-weight: 600;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--grid-color);
             padding-bottom: 0.3em;
             margin-top: 1.5em;
         }
@@ -64,26 +77,36 @@
             margin-bottom: 30px;
         }
 
-        .links a {
+        .links {
+            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+            font-size: 0.95em;
+        }
+
+        .links div {
             display: block;
+            margin: 12px 0;
+        }
+
+        .links a {
+            display: inline-block;
             color: var(--text-color);
             text-decoration: none;
-            margin: 10px 0;
             cursor: pointer;
+            width: fit-content;
         }
 
         .links a:hover {
             color: var(--accent-color);
         }
 
-        .content a, .company a {
+        .content a {
             color: var(--text-color);
             text-decoration: none;
             background: linear-gradient(to bottom, transparent 95%, var(--accent-color) 95%);
             transition: all 0.2s ease;
         }
 
-        .content a:hover, .company a:hover {
+        .content a:hover {
             color: var(--accent-color);
         }
 
@@ -97,7 +120,7 @@
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.2s;
-            font-family: Georgia, serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         .last-updated {
@@ -106,7 +129,7 @@
             margin-top: 40px;
             text-align: right;
             font-style: italic;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: 1px solid var(--grid-color);
             padding-top: 20px;
         }
 
@@ -126,11 +149,11 @@
 <body>
     <div class="container">
         <h1>Rohit Mittapalli</h1>
-        <div class="company">Currently scaling inference at <a href="#" data-clipboard="https://www.anthropic.com">Anthropic</a></div>
+        <div class="company">Currently scaling inference at <a href="https://www.anthropic.com" target="_blank">Anthropic</a></div>
         
         <div class="content">
             <h2>About Me</h2>
-            <p>I'm currently working on scalable inference at <a href="#" data-clipboard="https://www.anthropic.com">Anthropic</a>. Previously, I was at <a href="https://www.appliedintuition.com" target="_blank">Applied Intuition</a> where I focused on building and scaling our data infrastructure, particularly working with Apache Spark and <a href="https://hudi.apache.org/powered-by#applied-intuition" target="_blank">Apache Hudi</a>. Before that, I worked on search infrastructure at <a href="https://www.uber.com" target="_blank">Uber</a>.</p>
+            <p>I'm currently working on scalable inference at <a href="https://www.anthropic.com" target="_blank">Anthropic</a>. Previously, I was at <a href="https://www.appliedintuition.com" target="_blank">Applied Intuition</a> where I focused on building and scaling our data infrastructure, particularly working with Apache Spark and <a href="https://hudi.apache.org/powered-by#applied-intuition" target="_blank">Apache Hudi</a>. Before that, I worked on search infrastructure at <a href="https://www.uber.com" target="_blank">Uber</a>.</p>
             
             <p>I graduated from <a href="https://www.gatech.edu" target="_blank">Georgia Tech</a> in 2021, where I had the privilege of researching under <a href="https://faculty.cc.gatech.edu/~judy/" target="_blank">Dr. Judy Hoffman</a>, focusing on computer vision and transfer learning across CV tasks.</p>
 
@@ -139,11 +162,11 @@
 
         <h2>Links</h2>
         <div class="links">
-            <a href="resume.pdf" data-clipboard="resume.pdf" download>📄 Resume</a>
-            <a href="#" data-clipboard="https://www.linkedin.com/in/rohitmittapalli">👥 LinkedIn</a>
-            <a href="#" data-clipboard="https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ">📚 Google Scholar</a>
-            <a href="#" data-clipboard="https://github.com/rohitmittapalli">💻 GitHub</a>
-            <a href="#" data-clipboard="rohit.mittapalli@gmail.com">📧 Email</a>
+            <div><a href="#" data-clipboard="rohit.mittapalli@gmail.com">📧 Email</a></div>
+            <div><a href="https://github.com/rohitmittapalli" target="_blank">💻 GitHub</a></div>
+            <div><a href="https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ" target="_blank">📚 Scholar</a></div>
+            <div><a href="https://www.linkedin.com/in/rohitmittapalli" target="_blank">👥 LinkedIn</a></div>
+            <div><a href="resume.pdf" target="_blank">📄 Resume</a></div>
         </div>
 
         <div class="last-updated">Last Updated: November 2024</div>
@@ -152,13 +175,11 @@
     <div class="tooltip" id="tooltip">Copied to clipboard!</div>
 
     <script>
+        // Only handle clipboard for email
         document.querySelectorAll('a[data-clipboard]').forEach(link => {
             link.addEventListener('click', (e) => {
-                if (link.hasAttribute('download')) {
-                    return; // Allow normal download behavior for resume
-                }
                 e.preventDefault();
-                const text = e.target.dataset.clipboard;
+                const text = link.dataset.clipboard;
                 navigator.clipboard.writeText(text);
                 
                 const tooltip = document.getElementById('tooltip');
