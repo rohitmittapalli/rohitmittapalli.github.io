@@ -215,13 +215,13 @@
 
         .matrix-character {
             position: fixed;
-            color: #0F0;
+	    color: var(--text-color);
             font-family: monospace;
             font-size: 20px;
             line-height: 20px;
             z-index: 1000;
             pointer-events: none;
-            text-shadow: 0 0 5px #0F0;
+	    text-shadow: 0 0 5px var(--text-color); /* Match glow to text color */
             animation: matrix-rain linear infinite;
         }
 
@@ -503,7 +503,7 @@
                 this.fs = {
                     'help.txt': "Available commands:\n\nls - List files\ncat <file> - Display file contents\nclear - Clear terminal\nhelp - Show this help message\npwd - Print working directory\necho <text> - Print text\ndate - Show current date",
                     'about.txt': "I'm currently working on scalable inference at Anthropic. Previously, I was at Applied Intuition where I focused on building and scaling our data infrastructure, particularly working with Apache Spark and Apache Hudi. Before that, I worked on search infrastructure at Uber.\n\nI graduated from Georgia Tech in 2021, where I had the privilege of researching under Dr. Judy Hoffman, focusing on computer vision and transfer learning across CV tasks.\n\nI'm always excited to connect with people who share similar interests. Feel free to reach out!",
-                    'easteregg.txt': "🎉 You found the easter egg!\nHere's a secret: Try pressing 'up up down down left right left right b a' anywhere on the site...",
+                    'easteregg.txt': "🎉 You found the easter egg!\nHere's a secret: Try pressing 'up up down down left right left right b a' anywhere on the site (except when in the terminal)...",
                     'interests.txt': "- Distributed systems around large language models - in a capacity constrained world how do we make LLMs run faster and more efficiently.\n- Computer vision, specifically in Autonomous vehicles\n- Tools we should be building for LLMs that are sufficiently different from tools for humans\n- Aviation (PPL 05/24)\n- Formula 1",
                     'skills.txt': "Technical Skills:\n- Languages: Python, Rust, Terrafrom, Java\n- Infrastructure: K8s, Apache Spark, Hudi, GCP/AWS",
                     'books.txt': "Title: The Last Lecture\nTitle: A Promised Land\nTitle: Born a Crime\nTitle: Radical Candor\nTitle: Designing Data-Intensive Applications\nTitle: Building Microservices, Sam Newman\nTitle: A Philosophy of Software Design, John Ousterhout"
@@ -745,7 +745,7 @@
 
         document.addEventListener('keydown', (event) => {
             // Don't trigger when typing in terminal
-            if (event.target.classList.contains('terminal-input')) {
+            if (event.target.classList.contains('terminal-input') || terminal.isVisible()) {
                 return;
             }
             
