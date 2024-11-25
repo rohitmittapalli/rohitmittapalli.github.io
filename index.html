@@ -4,85 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohit Mittapalli</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-serif/0.1.1/font.min.css">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-            color: #333;
+        :root {
+            --primary-color: #2C3E50;
+            --accent-color: #34495E;
+            --background-color: #FCFCFC;
+            --text-color: #2C3E50;
+            --subtle-color: #95A5A6;
         }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 0 40px;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            background-image: 
+                linear-gradient(to right, rgba(44, 62, 80, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(44, 62, 80, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            font-size: 15px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px 50px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
         img {
-            max-width: 200px;
-            border-radius: 5px;
+            max-width: 160px;
+            border-radius: 3px;
+            filter: grayscale(20%);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
             margin: 20px 0;
         }
+
+        h1, h2 {
+            font-family: 'Crimson Text', Georgia, serif;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin: 0;
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            color: var(--accent-color);
+            font-weight: 600;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+
+        .company {
+            color: var(--subtle-color);
+            font-size: 1.1em;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
         .links a {
             display: block;
-            color: #555;
+            color: var(--text-color);
             text-decoration: none;
             margin: 10px 0;
             cursor: pointer;
         }
+
         .links a:hover {
-            color: #000;
+            color: var(--accent-color);
         }
+
+        .content a, .company a {
+            color: var(--text-color);
+            text-decoration: none;
+            background: linear-gradient(to bottom, transparent 95%, var(--accent-color) 95%);
+            transition: all 0.2s ease;
+        }
+
+        .content a:hover, .company a:hover {
+            color: var(--accent-color);
+        }
+
         .tooltip {
             position: fixed;
-            background: #333;
+            background: var(--accent-color);
             color: white;
             padding: 5px 10px;
             border-radius: 3px;
-            font-size: 14px;
+            font-size: 13px;
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.2s;
+            font-family: Georgia, serif;
         }
-        h1 {
-            margin-bottom: 5px;
+
+        .last-updated {
+            color: var(--subtle-color);
+            font-size: 0.9em;
+            margin-top: 40px;
+            text-align: right;
+            font-style: italic;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 20px;
         }
-        .company {
-            color: #666;
-            margin-bottom: 20px;
+
+        p {
+            margin: 1.5em 0;
         }
-        .content a {
-            color: #555;
-            text-decoration: none;
-        }
-        .content a:hover {
-            color: #000;
+
+        p:first-of-type::first-letter {
+            font-size: 3.2em;
+            float: left;
+            line-height: 0.9;
+            padding-right: 8px;
+            color: var(--accent-color);
         }
     </style>
 </head>
 <body>
-    <h1>Rohit Mittapalli</h1>
-    <div class="company">Work at <a href="https://www.anthropic.com" target="_blank">Anthropic</a> - focused on scalable inference</div>
-    
-    <img src="rohit.jpeg" alt="Rohit Mittapalli">
-    
-    <div class="content">
-        <h2>About Me</h2>
-        <p>I'm currently working on scalable inference at <a href="https://www.anthropic.com" target="_blank">Anthropic</a>. Previously, I was at <a href="https://www.appliedintuition.com" target="_blank">Applied Intuition</a> where I focused on building and scaling our data infrastructure, particularly working with Apache Spark and <a href="https://hudi.apache.org" target="_blank">Apache Hudi</a>. Before that, I worked on search infrastructure at <a href="https://www.uber.com" target="_blank">Uber</a>.</p>
+    <div class="container">
+        <h1>Rohit Mittapalli</h1>
+        <div class="company">Currently scaling inference at <a href="#" data-clipboard="https://www.anthropic.com">Anthropic</a></div>
         
-        <p>I graduated from <a href="https://www.gatech.edu" target="_blank">Georgia Tech</a> in 2021, where I had the privilege of researching under <a href="https://faculty.cc.gatech.edu/~judy/" target="_blank">Dr. Judy Hoffman</a>, focusing on computer vision and transfer learning across CV tasks.</p>
+        <img src="rohit.jpeg" alt="Rohit Mittapalli">
+        
+        <div class="content">
+            <h2>About Me</h2>
+            <p>I'm currently working on scalable inference at <a href="#" data-clipboard="https://www.anthropic.com">Anthropic</a>. Previously, I was at <a href="https://www.appliedintuition.com" target="_blank">Applied Intuition</a> where I focused on building and scaling our data infrastructure, particularly working with Apache Spark and <a href="https://hudi.apache.org/powered-by#applied-intuition" target="_blank">Apache Hudi</a>. Before that, I worked on search infrastructure at <a href="https://www.uber.com" target="_blank">Uber</a>.</p>
+            
+            <p>I graduated from <a href="https://www.gatech.edu" target="_blank">Georgia Tech</a> in 2021, where I had the privilege of researching under <a href="https://faculty.cc.gatech.edu/~judy/" target="_blank">Dr. Judy Hoffman</a>, focusing on computer vision and transfer learning across CV tasks.</p>
 
-        <p>I'm always excited to connect with people who share my interests in scalable systems, machine learning, and technology. Feel free to reach out!</p>
-    </div>
+            <p>I'm always excited to connect with people who share similar interests. Feel free to reach out!</p>
+        </div>
 
-    <h2>Links</h2>
-    <div class="links">
-        <a href="resume.pdf" data-clipboard="resume.pdf" download>📄 Resume</a>
-        <a href="#" data-clipboard="https://www.linkedin.com/in/rohitmittapalli">👥 LinkedIn</a>
-        <a href="#" data-clipboard="https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ">📚 Google Scholar</a>
-        <a href="#" data-clipboard="https://github.com/rohitmittapalli">💻 GitHub</a>
-        <a href="#" data-clipboard="rohit.mittapalli@gmail.com">📧 Email</a>
+        <h2>Links</h2>
+        <div class="links">
+            <a href="resume.pdf" data-clipboard="resume.pdf" download>📄 Resume</a>
+            <a href="#" data-clipboard="https://www.linkedin.com/in/rohitmittapalli">👥 LinkedIn</a>
+            <a href="#" data-clipboard="https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ">📚 Google Scholar</a>
+            <a href="#" data-clipboard="https://github.com/rohitmittapalli">💻 GitHub</a>
+            <a href="#" data-clipboard="rohit.mittapalli@gmail.com">📧 Email</a>
+        </div>
+
+        <div class="last-updated">Last Updated: November 2024</div>
     </div>
 
     <div class="tooltip" id="tooltip">Copied to clipboard!</div>
 
     <script>
-        document.querySelectorAll('.links a').forEach(link => {
+        document.querySelectorAll('a[data-clipboard]').forEach(link => {
             link.addEventListener('click', (e) => {
                 if (link.hasAttribute('download')) {
                     return; // Allow normal download behavior for resume
