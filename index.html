@@ -4,761 +4,444 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohit Mittapalli</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #1a2634;
-            --accent-color: #2d3e50;
-            --background-color: #f8f9fa;
-            --text-color: #1a2634;
-            --subtle-color: #6c7a89;
-            --grid-color: rgba(0, 0, 0, 0.06);
-            --container-bg: white;
-            --link-hover: #2d3e50;
+            --bg: #fef7f0;
+            --bg-subtle: #fdf2e9;
+            --text: #3d2c1e;
+            --text-secondary: #8b7355;
+            --accent: #c2410c;
+            --accent-soft: #ea580c;
+            --border: #e7d5c4;
+            --hover: #9a3412;
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --primary-color: #e1e1e1;
-                --accent-color: #a8b9cc;
-                --background-color: #1a1a1a;
-                --text-color: #e1e1e1;
-                --subtle-color: #888;
-                --grid-color: rgba(255, 255, 255, 0.06);
-                --container-bg: #1a1a1a;
-                --link-hover: #a8b9cc;
+                --bg: #d5c9a6;
+                --bg-subtle: #c9bc98;
+                --text: #2c2416;
+                --text-secondary: #5c4d35;
+                --accent: #8b6914;
+                --accent-soft: #a67c1a;
+                --border: #b5a888;
+                --hover: #6b4f0e;
             }
         }
 
-        /* Light theme (default) */
         :root[data-theme="light"] {
-            --primary-color: #1a2634;
-            --accent-color: #2d3e50;
-            --background-color: #f8f9fa;
-            --text-color: #1a2634;
-            --subtle-color: #6c7a89;
-            --grid-color: rgba(0, 0, 0, 0.06);
-            --container-bg: white;
-            --link-hover: #2d3e50;
+            --bg: #fef7f0;
+            --bg-subtle: #fdf2e9;
+            --text: #3d2c1e;
+            --text-secondary: #8b7355;
+            --accent: #c2410c;
+            --accent-soft: #ea580c;
+            --border: #e7d5c4;
+            --hover: #9a3412;
         }
-        
-        /* Dark theme */
+
         :root[data-theme="dark"] {
-            --primary-color: #e1e1e1;
-            --accent-color: #a8b9cc;
-            --background-color: #1a1a1a;
-            --text-color: #e1e1e1;
-            --subtle-color: #888;
-            --grid-color: rgba(255, 255, 255, 0.06);
-            --container-bg: #1a1a1a;
-            --link-hover: #a8b9cc;
+            --bg: #d5c9a6;
+            --bg-subtle: #c9bc98;
+            --text: #2c2416;
+            --text-secondary: #5c4d35;
+            --accent: #8b6914;
+            --accent-soft: #a67c1a;
+            --border: #b5a888;
+            --hover: #6b4f0e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 17px;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+            font-family: 'Geist Mono', ui-monospace, monospace;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 0 20px;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            background-image: 
-                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-            background-size: 16px 16px;
-            font-size: 14px;
-            transition: color 0.3s ease, background-color 0.3s ease;
+            min-height: 100vh;
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
-        .container {
-            background: var(--container-bg);
-            padding: 40px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--grid-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+        .wrapper {
+            display: grid;
+            grid-template-columns: 1fr min(640px, 100%) 1fr;
+            min-height: 100vh;
         }
 
-        @media (max-width: 600px) {
-            body {
-                margin: 0;
-                padding: 0;
-                background: var(--container-bg);
+        .wrapper > * {
+            grid-column: 2;
+        }
+
+        main {
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 24px 32px;
+            align-content: center;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 640px) {
+            main {
+                grid-template-columns: 1fr;
+                padding: 48px 20px;
+                gap: 32px;
             }
-            .container {
-                padding: 20px;
-                box-shadow: none;
-                border: none;
+            html {
+                font-size: 15px;
             }
         }
 
-        h1, h2 {
-            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+        /* Header spans full width */
+        header {
+            grid-column: 1 / -1;
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
         }
 
         h1 {
-            font-size: 2em;
-            margin: 0;
-            margin-bottom: 0.2em;
-            font-weight: 600;
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 3.2rem;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, var(--text), var(--accent), var(--accent-soft), var(--text));
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
         }
 
-        h2 {
-            font-size: 1.4em;
-            color: var(--accent-color);
-            font-weight: 600;
-            border-bottom: 1px solid var(--grid-color);
-            padding-bottom: 0.3em;
-            margin-top: 1.5em;
-            transition: border-color 0.3s ease;
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
-        .company {
-            color: var(--subtle-color);
-            font-size: 1.1em;
+        .tagline {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .tagline a {
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+        }
+
+        /* Row layout */
+        .row {
+            display: contents;
+        }
+
+        .row-label {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1rem;
             font-style: italic;
-            margin-bottom: 30px;
+            color: var(--accent);
+            padding-top: 2px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
         }
 
+        .row:nth-child(2) .row-label,
+        .row:nth-child(2) .row-content { animation-delay: 0.1s; }
+        .row:nth-child(3) .row-label,
+        .row:nth-child(3) .row-content { animation-delay: 0.15s; }
+        .row:nth-child(4) .row-label,
+        .row:nth-child(4) .row-content { animation-delay: 0.2s; }
+
+        .row-content {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .row-content a {
+            color: var(--text);
+            text-decoration: none;
+            background: linear-gradient(var(--accent), var(--accent)) no-repeat right bottom / 0 1px;
+            transition: background-size 0.3s ease;
+            padding-bottom: 1px;
+        }
+
+        .row-content a:hover {
+            background-size: 100% 1px;
+            background-position: left bottom;
+        }
+
+        @media (max-width: 640px) {
+            .row {
+                display: block;
+            }
+            .row-label {
+                margin-bottom: 8px;
+            }
+        }
+
+        /* Experience */
+        .experience {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .role {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4px 16px;
+        }
+
+        .role-company {
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        .role-company a {
+            color: var(--text);
+            text-decoration: none;
+            background: linear-gradient(var(--accent), var(--accent)) no-repeat right bottom / 0 1px;
+            transition: background-size 0.3s ease;
+            padding-bottom: 1px;
+        }
+
+        .role-company a:hover {
+            background-size: 100% 1px;
+            background-position: left bottom;
+        }
+
+        .role-date {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-align: right;
+        }
+
+        .role-desc {
+            grid-column: 1 / -1;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Links */
         .links {
-            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-            font-size: 0.95em;
-        }
-
-        .links div {
-            display: block;
-            margin: 12px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 16px;
         }
 
         .links a {
-            display: inline-block;
-            color: var(--text-color);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
             text-decoration: none;
+            transition: color 0.2s ease;
             cursor: pointer;
-            width: fit-content;
         }
 
         .links a:hover {
-            color: var(--link-hover);
+            color: var(--text);
         }
 
-        .content a, .company a {
-            color: var(--text-color);
-            text-decoration: none;
-            background: linear-gradient(to bottom, transparent 95%, var(--accent-color) 95%);
-            transition: all 0.2s ease;
+        .links a::after {
+            content: ' ↗';
+            color: var(--accent);
+            font-size: 0.7em;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: inline-block;
         }
 
-        .content a:hover, .company a:hover {
-            color: var(--link-hover);
+        .links a:hover::after {
+            transform: translate(2px, -2px);
         }
 
-        .tooltip {
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--accent-color);
-            color: var(--container-bg);
-            padding: 8px 16px;
-            border-radius: 3px;
-            font-size: 13px;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.2s;
-            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-            white-space: nowrap;
-        }
-
-        .footer {
+        /* Footer */
+        footer {
+            grid-column: 1 / -1;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 40px;
-            border-top: 1px solid var(--grid-color);
-            padding-top: 20px;
-            transition: border-color 0.3s ease;
-        }
-
-        .last-updated {
-            color: var(--subtle-color);
-            font-size: 0.9em;
-            font-style: italic;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.3s forwards;
         }
 
         .theme-toggle {
-            cursor: pointer;
-            user-select: none;
-            font-size: 1.2em;
-        }
-
-        /* Terminal styles */
-        .terminal-button {
-            display: none; /* Hide by default on mobile */
+            color: var(--text-secondary);
             cursor: pointer;
             background: none;
             border: none;
-            color: var(--text-color);
-            font-size: 1.2em;
-            padding: 0;
-            margin: 0;
-            margin-right: 10px;
-        }
-
-        /* Matrix effect styles */
-        @keyframes matrix-rain {
-            0% {
-                transform: translateY(-100%);
-            }
-            100% {
-                transform: translateY(100vh);
-            }
-        }
-
-        .matrix-character {
-            position: fixed;
-	    color: var(--text-color);
-            font-family: monospace;
-            font-size: 20px;
-            line-height: 20px;
-            z-index: 1000;
-            pointer-events: none;
-	    text-shadow: 0 0 5px var(--text-color); /* Match glow to text color */
-            animation: matrix-rain linear infinite;
-        }
-
-        .footer-controls {
-            display: flex;
-            align-items: center;
-        }
-
-        /* Only show terminal on desktop */
-        @media (min-width: 768px) {
-            .terminal-button {
-                display: block;
-            }
-        }
-
-        .terminal-container {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 400px;
-            background: #1a1a1a;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            z-index: 1001;
-            overflow: hidden; /* Prevent content from spilling out */
-        }
-
-        .terminal-header {
-            background: #2d2d2d;
-            padding: 8px;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .terminal-title {
-            color: #e1e1e1;
-            font-size: 0.9em;
-        }
-
-        .terminal-close {
-            color: #e1e1e1;
-            cursor: pointer;
-            padding: 0 8px;
-        }
-
-        .terminal-content {
-            padding: 15px;
-            height: calc(100% - 35px);
-            overflow-y: auto;
-            color: #e1e1e1;
-            font-size: 0.9em;
-            line-height: 1.4;
-            margin: 0;
-            position: relative;
-            scroll-padding: 15px;
-        }
-
-        /* Add padding to the top and bottom of scrollable content */
-        .terminal-content::before,
-        .terminal-content::after {
-            content: '';
-            display: block;
-            height: 15px;
-        }
-
-        .terminal-content::-webkit-scrollbar {
-            width: 8px;
-            margin-left: 4px;
-        }
-
-        .terminal-content::-webkit-scrollbar-track {
-            background: #1a1a1a;
-            margin: 15px 0;
-        }
-
-        .terminal-content::-webkit-scrollbar-thumb {
-            background: #4a4a4a;
-            border-radius: 4px;
-            border: 2px solid #1a1a1a;
-        }
-
-        .terminal-content::-webkit-scrollbar-thumb:hover {
-            background: #5a5a5a;
-        }
-
-        .terminal-line {
-            margin: 5px 0;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-
-        .terminal-prompt {
-            color: #50fa7b;
-            display: inline;
-            margin-right: 5px;
-        }
-
-        .input-line {
-            display: flex;
-            margin: 5px 0;
-        }
-
-        .input-line .terminal-prompt {
-            flex-shrink: 0;
-        }
-
-        .terminal-input-wrapper {
-            flex-grow: 1;
-            display: inline;
-        }
-
-        .terminal-input {
-            background: none;
-            border: none;
-            color: #e1e1e1;
             font-family: inherit;
             font-size: inherit;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-            outline: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: color 0.2s ease;
         }
 
-        .terminal-overlay {
-            display: none;
+        .theme-toggle:hover {
+            color: var(--text);
+        }
+
+        /* Toast */
+        .toast {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(16px);
+            background: var(--text);
+            color: var(--bg);
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 100;
         }
 
-        p {
-            margin: 1.5em 0;
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
-        p:first-of-type::first-letter {
-            font-size: 3.2em;
-            float: left;
-            line-height: 0.9;
-            padding-right: 8px;
-            color: var(--accent-color);
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--bg);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Rohit Mittapalli</h1>
-        <div class="company">Currently scaling inference at <a href="https://www.anthropic.com" target="_blank">Anthropic</a></div>
-        
-        <div class="content">
-            <h2>About Me</h2>
-            <p>I work on scalable inference at <a href="https://www.anthropic.com" target="_blank">Anthropic</a>. Previously, I was at <a href="https://www.appliedintuition.com" target="_blank">Applied Intuition</a> focused on building and scaling our data infrastructure, working with Apache Spark and <a href="https://hudi.apache.org/powered-by#applied-intuition" target="_blank">Apache Hudi</a>. Before that, I worked on search infrastructure at <a href="https://www.uber.com" target="_blank">Uber</a>.</p>
-            
-            <p>I graduated from Georgia Tech in 2021, where I had the privilege of researching under <a href="https://faculty.cc.gatech.edu/~judy/" target="_blank">Dr. Judy Hoffman</a>, focusing on computer vision and transfer learning across CV tasks.</p>
+    <div class="wrapper">
+        <main>
+            <header>
+                <h1>Rohit Mittapalli</h1>
+                <p class="tagline">Making models go brr at <a href="https://www.anthropic.com" target="_blank">Anthropic</a></p>
+            </header>
 
-            <p>I'm excited to connect with people who share similar interests. Feel free to reach out!</p>
-        </div>
-
-        <h2>Links</h2>
-        <div class="links">
-            <div><a href="#" data-clipboard="rohit.mittapalli@gmail.com">📧 Email</a></div>
-            <div><a href="https://github.com/rohitmittapalli" target="_blank">💻 GitHub</a></div>
-            <div><a href="https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ" target="_blank">📚 Google Scholar</a></div>
-            <div><a href="https://www.linkedin.com/in/rohitmittapalli" target="_blank">👥 LinkedIn</a></div>
-            <div><a href="resume.pdf" target="_blank">📄 Resume</a></div>
-        </div>
-
-        <div class="footer">
-            <div class="last-updated">Last Updated: November 2024</div>
-            <div class="footer-controls">
-                <span class="terminal-button">⌨️</span>
-                <div class="theme-toggle">☀️</div>
+            <div class="row">
+                <div class="row-label">About</div>
+                <div class="row-content">
+                    <p>I work on inference at <a href="https://www.anthropic.com" target="_blank">Anthropic</a> — primarily making Claude fast but also occasionally other things (<a href="https://www-cdn.anthropic.com/dc4cb293c77da3ca5e3398bdeef75ee17b42b73f.pdf" target="_blank">safeguards</a>, <a href="https://www.anthropic.com/news/prompt-caching" target="_blank">prompt caching</a>). Previously built data infrastructure at <a href="https://www.appliedintuition.com" target="_blank">Applied Intuition</a> and search systems at <a href="https://www.uber.com" target="_blank">Uber</a>. Georgia Tech '21. Also a pilot (PPL '24).</p>
+                </div>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="row-label">Experience</div>
+                <div class="row-content">
+                    <div class="experience">
+                        <div class="role">
+                            <span class="role-company"><a href="https://www.anthropic.com" target="_blank">Anthropic</a></span>
+                            <span class="role-date">2024 –</span>
+                            <span class="role-desc">Inference, prompt caching, safeguards</span>
+                        </div>
+                        <div class="role">
+                            <span class="role-company"><a href="https://flintk12.com" target="_blank">Flint</a> · Advisor</span>
+                            <span class="role-date">2024 –</span>
+                            <span class="role-desc">Personalized learning for schools</span>
+                        </div>
+                        <div class="role">
+                            <span class="role-company"><a href="https://www.appliedintuition.com" target="_blank">Applied Intuition</a></span>
+                            <span class="role-date">2021 – 24</span>
+                            <span class="role-desc">Data infrastructure, Spark, Hudi</span>
+                        </div>
+                        <div class="role">
+                            <span class="role-company"><a href="https://www.uber.com" target="_blank">Uber</a></span>
+                            <span class="role-date">2020</span>
+                            <span class="role-desc">Search infrastructure</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row-label">Links</div>
+                <div class="row-content">
+                    <div class="links">
+                        <a data-clipboard="rohit.mittapalli@gmail.com">Email</a>
+                        <a href="https://github.com/rohitmittapalli" target="_blank">GitHub</a>
+                        <a href="https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ" target="_blank">Scholar</a>
+                        <a href="https://www.linkedin.com/in/rohitmittapalli" target="_blank">LinkedIn</a>
+                        <a href="resume.pdf" target="_blank">Resume</a>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <span>December 2024</span>
+                <button class="theme-toggle">Toggle theme</button>
+            </footer>
+        </main>
     </div>
 
-    <div class="tooltip" id="tooltip">Copied rohit.mittapalli@gmail.com to clipboard!</div>
-    <div class="terminal-overlay"></div>
-    <div class="terminal-container">
-        <div class="terminal-header">
-            <div class="terminal-title">rohit@portfolio ~ </div>
-            <div class="terminal-close">×</div>
-        </div>
-        <div class="terminal-content">
-            <div class="terminal-line">Welcome! Type 'help' to see available commands</div>
-            <div class="input-line">
-                <span class="terminal-prompt">rohit@portfolio:~$</span>
-                <span class="terminal-input-wrapper">
-                    <input type="text" class="terminal-input" autofocus>
-                </span>
-            </div>
-        </div>
-    </div>
+    <div class="toast" id="toast"></div>
 
     <script>
-        // Email clipboard functionality
-        document.querySelectorAll('a[data-clipboard]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const text = link.dataset.clipboard;
-                navigator.clipboard.writeText(text);
-                
-                const tooltip = document.getElementById('tooltip');
-                tooltip.textContent = `Copied ${text} to clipboard`;
-                tooltip.style.opacity = '1';
-                
-                setTimeout(() => {
-                    tooltip.style.opacity = '0';
-                }, 1000);
-            });
-        });
-
-        // Theme toggle
-        const themeToggle = document.querySelector('.theme-toggle');
+        const toggle = document.querySelector('.theme-toggle');
         const root = document.documentElement;
-        
-        // Function to check if system is in dark mode
-        const systemPrefersDark = () => 
-            window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-        // Function to set theme
-        const setTheme = (isDark) => {
-            if (isDark) {
-                root.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '🌙';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                root.setAttribute('data-theme', 'light');
-                themeToggle.textContent = '☀️';
-                localStorage.setItem('theme', 'light');
-            }
+        const systemPrefersDark = () =>
+            window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+
+        const setTheme = (dark) => {
+            root.setAttribute('data-theme', dark ? 'dark' : 'light');
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
         };
 
-        // Initialize theme based on localStorage or system preference
-        const storedTheme = localStorage.getItem('theme');
-        if (storedTheme) {
-            setTheme(storedTheme === 'dark');
+        const stored = localStorage.getItem('theme');
+        if (stored) {
+            setTheme(stored === 'dark');
         } else {
             setTheme(systemPrefersDark());
         }
 
-        // Toggle theme on click
-        themeToggle.addEventListener('click', () => {
+        toggle.addEventListener('click', () => {
             const isDark = root.getAttribute('data-theme') === 'dark';
             setTheme(!isDark);
         });
 
-        // Terminal functionality
-        const terminal = {
-            container: document.querySelector('.terminal-container'),
-            overlay: document.querySelector('.terminal-overlay'),
-            button: document.querySelector('.terminal-button'),
-            closeBtn: document.querySelector('.terminal-close'),
-            content: document.querySelector('.terminal-content'),
-            input: document.querySelector('.terminal-input'),
-            
-            // Command history
-            history: [],
-            historyIndex: -1,
-            currentInput: '',
+        const toast = document.getElementById('toast');
 
-            // File system simulation
-            fs: {},
-            
-            currentDirectory: '~',
-            
-            // Initialize terminal
-            async init() {
-                // Load terminal files
-                this.fs = {
-                    'help.txt': "Available commands:\n\nls - List files\ncat <file> - Display file contents\nclear - Clear terminal\nhelp - Show this help message\npwd - Print working directory\necho <text> - Print text\ndate - Show current date",
-                    'about.txt': "I work on scalable inference at Anthropic. Previously, I was at Applied Intuition focused on building and scaling our data infrastructure, working with Apache Spark and Apache Hudi. Before that, I worked on search infrastructure at Uber.\nI graduated from Georgia Tech in 2021, where I had the privilege of researching under Dr. Judy Hoffman, focusing on computer vision and transfer learning across CV tasks.",
-                    'easteregg.txt': "🎉 You found the easter egg!\nHere's a secret: Try pressing 'up up down down left right left right b a' anywhere on the site (except when in the terminal)...",
-                    'interests.txt': "- Distributed systems around large language models - in a capacity constrained world how do we make LLMs run faster and more efficiently.\n- Computer vision, specifically in Autonomous vehicles\n- Tools we should be building for LLMs that are sufficiently different from tools for humans\n- Aviation (PPL 05/24)\n- Formula 1",
-                    'skills.txt': "Technical Skills:\n- Languages: Python, Rust, Terrafrom, Java\n- Infrastructure: K8s, Apache Spark, Hudi, GCP/AWS",
-                    'books.txt': "Title: The Last Lecture\nTitle: A Promised Land\nTitle: Born a Crime\nTitle: Radical Candor\nTitle: Designing Data-Intensive Applications\nTitle: Building Microservices, Sam Newman\nTitle: A Philosophy of Software Design, John Ousterhout"
-                };
+        document.querySelectorAll('[data-clipboard]').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                const text = el.dataset.clipboard;
+                navigator.clipboard.writeText(text);
 
-                this.button.addEventListener('click', () => this.show());
-                this.closeBtn.addEventListener('click', () => this.hide());
-                this.overlay.addEventListener('click', () => this.hide());
-                
-                // Enhanced input handling
-                this.input.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter') {
-                        this.handleCommand(e);
-                    } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-                        this.navigateHistory(e);
-                        e.preventDefault();
-                    } else if (e.key === 'Tab') {
-                        this.handleTabCompletion(e);
-                        e.preventDefault();
-                    }
-                });
-                
-                // Close on Escape
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && this.isVisible()) {
-                        this.hide();
-                    }
-                });
-            },
-            
-            // Show terminal
-            show() {
-                this.container.style.display = 'block';
-                this.overlay.style.display = 'block';
-                this.input.focus();
-            },
-            
-            // Hide terminal
-            hide() {
-                this.container.style.display = 'none';
-                this.overlay.style.display = 'none';
-            },
-            
-            // Check if terminal is visible
-            isVisible() {
-                return this.container.style.display === 'block';
-            },
-            
-            // Add new line to terminal
-            addLine(text, isCommand = false) {
-                const line = document.createElement('div');
-                line.className = 'terminal-line';
-                
-                if (isCommand) {
-                    // For commands, include the prompt
-                    line.innerHTML = `<span class="terminal-prompt">rohit@portfolio:${this.currentDirectory}$</span> ${text}`;
-                } else {
-                    // For output, just show the text
-                    line.textContent = text;
-                }
-                
-                // Insert before the input line
-                this.content.insertBefore(line, this.content.lastElementChild);
-            },
-            
-            // Clear terminal
-            clear() {
-                const children = Array.from(this.content.children);
-                children.slice(0, -1).forEach(child => child.remove());
-            },
+                toast.textContent = `Copied ${text}`;
+                toast.classList.add('show');
 
-            // Handle command history navigation
-            navigateHistory(e) {
-                if (this.history.length === 0) return;
-
-                if (e.key === 'ArrowUp') {
-                    // Save current input if we're starting to navigate
-                    if (this.historyIndex === -1) {
-                        this.currentInput = this.input.value;
-                    }
-                    this.historyIndex = Math.min(this.historyIndex + 1, this.history.length - 1);
-                } else if (e.key === 'ArrowDown') {
-                    this.historyIndex = Math.max(this.historyIndex - 1, -1);
-                }
-
-                // Restore current input if we've moved past the end of history
-                if (this.historyIndex === -1) {
-                    this.input.value = this.currentInput;
-                } else {
-                    this.input.value = this.history[this.history.length - 1 - this.historyIndex];
-                }
-
-                // Move cursor to end of input
                 setTimeout(() => {
-                    this.input.selectionStart = this.input.selectionEnd = this.input.value.length;
-                }, 0);
-            },
-
-            // Handle tab completion
-            handleTabCompletion(e) {
-                const input = this.input.value;
-                const [cmd, ...args] = input.trim().split(' ');
-                
-                // Only complete for commands that work with files
-                if (['cat'].includes(cmd) && args.length <= 1) {
-                    const prefix = args[0] || '';
-                    const matches = Object.keys(this.fs).filter(file => 
-                        file.startsWith(prefix)
-                    );
-
-                    if (matches.length === 1) {
-                        // Single match - complete it
-                        this.input.value = `${cmd} ${matches[0]}`;
-                    } else if (matches.length > 1 && prefix) {
-                        // Multiple matches - show possibilities
-                        this.addLine(`Possible completions:`);
-                        this.addLine(matches.join('  '));
-                    }
-                }
-            },
-            
-            // Handle command execution
-            handleCommand(e) {
-                if (e.key !== 'Enter') return;
-                
-                const command = this.input.value.trim();
-                if (!command) return;
-                
-                // Add command to history
-                this.history.push(command);
-                this.historyIndex = -1;
-                this.currentInput = '';
-                
-                // Add command to terminal
-                this.addLine(command, true);
-                
-                // Parse command and arguments
-                const [cmd, ...args] = command.split(' ');
-                
-                // Execute command
-                switch (cmd.toLowerCase()) {
-                    case 'help':
-                        this.addLine(this.fs['help.txt'] || 'Help file not found.');
-                        break;
-                        
-                    case 'clear':
-                        this.clear();
-                        break;
-                        
-                    case 'ls':
-                        this.addLine(Object.keys(this.fs).join('  '));
-                        break;
-                        
-                    case 'cat':
-                        if (args.length === 0) {
-                            this.addLine('Usage: cat <file>');
-                        } else if (this.fs[args[0]]) {
-                            this.addLine(this.fs[args[0]]);
-                        } else {
-                            this.addLine(`cat: ${args[0]}: No such file or directory`);
-                        }
-                        break;
-                        
-                    case 'pwd':
-                        this.addLine(`/home/rohit/${this.currentDirectory}`);
-                        break;
-                        
-                    case 'echo':
-                        this.addLine(args.join(' '));
-                        break;
-                        
-                    case 'date':
-                        this.addLine(new Date().toString());
-                        break;
-                        
-                    default:
-                        this.addLine(`Command not found: ${cmd}`);
-                }
-                
-                // Clear input
-                this.input.value = '';
-                
-                // Scroll to bottom
-                this.content.scrollTop = this.content.scrollHeight;
-            }
-        };
-        
-        // Initialize terminal
-        terminal.init();
-
-        // Konami code implementation
-        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiIndex = 0;
-        let matrixInterval;
-        let matrixActive = false;
-
-        function createMatrixRain() {
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃ';
-            const column = document.createElement('div');
-            
-            // Random starting position
-            const startX = Math.random() * window.innerWidth;
-            
-            // Create characters in the column
-            for (let i = 0; i < 20; i++) {
-                const char = document.createElement('div');
-                char.className = 'matrix-character';
-                char.style.left = `${startX}px`;
-                char.style.top = `-${i * 20}px`;
-                char.style.animationDuration = `${2 + Math.random() * 3}s`;
-                char.textContent = characters[Math.floor(Math.random() * characters.length)];
-                document.body.appendChild(char);
-
-                // Remove after animation
-                setTimeout(() => {
-                    char.remove();
-                }, 5000);
-            }
-        }
-
-        function startMatrixEffect() {
-            if (matrixActive) return;
-            matrixActive = true;
-            
-            // Start the matrix effect
-            matrixInterval = setInterval(createMatrixRain, 100);
-
-            // Display easter egg message in terminal if it's open
-            if (terminal.isVisible()) {
-                terminal.addLine('🎮 Konami code activated! The matrix has you...');
-            }
-
-            // Stop after 5 seconds
-            setTimeout(() => {
-                clearInterval(matrixInterval);
-                matrixActive = false;
-            }, 5000);
-        }
-
-        document.addEventListener('keydown', (event) => {
-            // Don't trigger when typing in terminal
-            if (event.target.classList.contains('terminal-input') || terminal.isVisible()) {
-                return;
-            }
-            
-            if (event.key === konamiCode[konamiIndex]) {
-                konamiIndex++;
-                
-                if (konamiIndex === konamiCode.length) {
-                    startMatrixEffect();
-                    konamiIndex = 0;
-                }
-            } else {
-                konamiIndex = 0;
-            }
+                    toast.classList.remove('show');
+                }, 2000);
+            });
         });
     </script>
 </body>
