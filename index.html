@@ -24,6 +24,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Rohit Mittapalli",
+        "url": "https://rohitmittapalli.com/",
+        "image": "https://rohitmittapalli.com/rohit.jpeg",
+        "jobTitle": "Inference & Performance",
+        "worksFor": { "@type": "Organization", "name": "Anthropic", "url": "https://www.anthropic.com" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Georgia Institute of Technology" },
+        "sameAs": [
+            "https://github.com/rohitmittapalli",
+            "https://www.linkedin.com/in/rohitmittapalli",
+            "https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ"
+        ]
+    }
+    </script>
     <style>
         :root {
             --bg: #fef7f0;
@@ -147,6 +164,15 @@
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
+        }
+
+        /* Fallback: if background-clip:text is unsupported, keep the name visible */
+        @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+            h1 {
+                background: none;
+                -webkit-text-fill-color: currentColor;
+                color: var(--accent);
+            }
         }
 
         .tagline {
