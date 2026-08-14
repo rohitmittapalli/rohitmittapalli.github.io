@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohit Mittapalli</title>
+    <meta name="description" content="Rohit Mittapalli — working on scalable inference at Anthropic, making Claude fast. Previously data infrastructure at Applied Intuition. Georgia Tech '21.">
+    <meta name="author" content="Rohit Mittapalli">
+    <meta name="theme-color" content="#fef7f0" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1410" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="favicon.ico">
+    <link rel="canonical" href="https://rohitmittapalli.com/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Rohit Mittapalli">
+    <meta property="og:description" content="Working on scalable inference at Anthropic, making Claude fast.">
+    <meta property="og:url" content="https://rohitmittapalli.com/">
+    <meta property="og:image" content="https://rohitmittapalli.com/rohit.jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Rohit Mittapalli">
+    <meta name="twitter:description" content="Working on scalable inference at Anthropic, making Claude fast.">
+    <meta name="twitter:image" content="https://rohitmittapalli.com/rohit.jpeg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -21,14 +38,14 @@
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg: #d5c9a6;
-                --bg-subtle: #c9bc98;
-                --text: #2c2416;
-                --text-secondary: #5c4d35;
-                --accent: #8b6914;
-                --accent-soft: #a67c1a;
-                --border: #b5a888;
-                --hover: #6b4f0e;
+                --bg: #1a1410;
+                --bg-subtle: #221a13;
+                --text: #f0e6da;
+                --text-secondary: #a8927c;
+                --accent: #f97316;
+                --accent-soft: #fb923c;
+                --border: #3a2c20;
+                --hover: #fdba74;
             }
         }
 
@@ -44,14 +61,14 @@
         }
 
         :root[data-theme="dark"] {
-            --bg: #d5c9a6;
-            --bg-subtle: #c9bc98;
-            --text: #2c2416;
-            --text-secondary: #5c4d35;
-            --accent: #8b6914;
-            --accent-soft: #a67c1a;
-            --border: #b5a888;
-            --hover: #6b4f0e;
+            --bg: #1a1410;
+            --bg-subtle: #221a13;
+            --text: #f0e6da;
+            --text-secondary: #a8927c;
+            --accent: #f97316;
+            --accent-soft: #fb923c;
+            --border: #3a2c20;
+            --hover: #fdba74;
         }
 
         * {
@@ -336,6 +353,32 @@
             background: var(--accent);
             color: var(--bg);
         }
+
+        a:focus-visible,
+        .theme-toggle:focus-visible,
+        .links a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 2px;
+            color: var(--text);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            header,
+            .row-label,
+            .row-content,
+            footer {
+                opacity: 1 !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -380,7 +423,7 @@
                 <div class="row-label">Links</div>
                 <div class="row-content">
                     <div class="links">
-                        <a data-clipboard="rohit.mittapalli@gmail.com">Email</a>
+                        <a data-clipboard="rohit.mittapalli@gmail.com" role="button" tabindex="0" aria-label="Copy email address to clipboard">Email</a>
                         <a href="https://github.com/rohitmittapalli" target="_blank">GitHub</a>
                         <a href="https://scholar.google.com/citations?hl=en&user=zw9i5GwAAAAJ" target="_blank">Scholar</a>
                         <a href="https://www.linkedin.com/in/rohitmittapalli" target="_blank">LinkedIn</a>
@@ -391,7 +434,7 @@
 
             <footer>
                 <span>December 2025</span>
-                <button class="theme-toggle">Toggle theme</button>
+                <button class="theme-toggle" aria-label="Toggle color theme">Toggle theme</button>
             </footer>
         </main>
     </div>
@@ -405,9 +448,18 @@
         const systemPrefersDark = () =>
             window.matchMedia?.('(prefers-color-scheme: dark)').matches;
 
+        const themeColor = document.querySelector('meta[name="theme-color"]:not([media])')
+            || (() => {
+                const m = document.createElement('meta');
+                m.setAttribute('name', 'theme-color');
+                document.head.appendChild(m);
+                return m;
+            })();
+
         const setTheme = (dark) => {
             root.setAttribute('data-theme', dark ? 'dark' : 'light');
             localStorage.setItem('theme', dark ? 'dark' : 'light');
+            themeColor.setAttribute('content', dark ? '#1a1410' : '#fef7f0');
         };
 
         const stored = localStorage.getItem('theme');
@@ -423,20 +475,54 @@
         });
 
         const toast = document.getElementById('toast');
+        let toastTimer;
+
+        const showToast = (message) => {
+            toast.textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+        };
+
+        const copyClipboard = async (el) => {
+            const text = el.dataset.clipboard;
+            try {
+                await navigator.clipboard.writeText(text);
+                showToast(`Copied ${text}`);
+            } catch {
+                showToast(text);
+            }
+        };
 
         document.querySelectorAll('[data-clipboard]').forEach(el => {
             el.addEventListener('click', (e) => {
                 e.preventDefault();
-                const text = el.dataset.clipboard;
-                navigator.clipboard.writeText(text);
-
-                toast.textContent = `Copied ${text}`;
-                toast.classList.add('show');
-
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 2000);
+                copyClipboard(el);
             });
+            el.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    copyClipboard(el);
+                }
+            });
+        });
+
+        // Konami code — as promised in the terminal easter egg
+        const konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+            if (key === konami[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konami.length) {
+                    konamiIndex = 0;
+                    document.querySelector('h1').textContent = 'Rohit "go zoom" Mittapalli';
+                    showToast('🎉 zoooom');
+                }
+            } else {
+                konamiIndex = key === konami[0] ? 1 : 0;
+            }
         });
     </script>
 </body>
