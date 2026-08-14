@@ -7,11 +7,25 @@
     <meta name="robots" content="noindex">
     <meta name="theme-color" content="#fef7f0" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#1a1410" media="(prefers-color-scheme: dark)">
-    <link rel="icon" href="favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
     <style>
+        @font-face {
+            font-family: 'Geist Mono';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('/fonts/geist-mono-latin.woff2') format('woff2');
+        }
+        @font-face {
+            font-family: 'Instrument Serif';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('/fonts/instrument-serif-latin.woff2') format('woff2');
+        }
+
         :root {
             --bg: #fef7f0;
             --text: #3d2c1e;
