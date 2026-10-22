@@ -1,5 +1,0 @@
-- Distributed systems around large language models - in a capacity constrained world how do we make LLMs run faster and more efficiently.
-- Computer vision, specifically in Autonomous vehicles
-- Tools we should be building for LLMs that are sufficiently different from tools for humans
-- Aviation (PPL 05/24)
-- Formula 1
