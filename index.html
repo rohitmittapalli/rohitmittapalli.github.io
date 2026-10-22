@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohit Mittapalli</title>
-    <meta name="description" content="Rohit Mittapalli — engineering manager for inference performance at Anthropic, making Claude fast. Previously data infrastructure at Applied Intuition. Georgia Tech '21.">
+    <meta name="description" content="Rohit Mittapalli, engineering manager for inference performance at Anthropic, making Claude fast. Previously data infrastructure at Applied Intuition. Georgia Tech '21.">
     <meta name="author" content="Rohit Mittapalli">
     <meta name="theme-color" content="#fef7f0" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#1a1410" media="(prefers-color-scheme: dark)">
@@ -509,7 +509,7 @@
             <div class="row">
                 <div class="row-label">About</div>
                 <div class="row-content">
-                    <p id="bio">I lead the inference performance team at <a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a> — we make Claude fast. Before managing, I spent a couple of years as an engineer on inference, mostly on performance but also occasionally other things (<a href="https://www-cdn.anthropic.com/dc4cb293c77da3ca5e3398bdeef75ee17b42b73f.pdf" target="_blank" rel="noopener">safeguards</a>, <a href="https://www.anthropic.com/news/prompt-caching" target="_blank" rel="noopener">prompt caching</a>). Previously built data infrastructure at <a href="https://www.appliedintuition.com" target="_blank" rel="noopener">Applied Intuition</a>. Georgia Tech '21. Also a pilot (PPL '24). Currently in NYC.</p>
+                    <p id="bio">I lead the inference performance team at <a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a>. We make Claude fast. Before managing, I spent a couple of years as an engineer on inference, mostly on performance but also occasionally other things (<a href="https://www-cdn.anthropic.com/dc4cb293c77da3ca5e3398bdeef75ee17b42b73f.pdf" target="_blank" rel="noopener">safeguards</a>, <a href="https://www.anthropic.com/news/prompt-caching" target="_blank" rel="noopener">prompt caching</a>). Previously built data infrastructure at <a href="https://www.appliedintuition.com" target="_blank" rel="noopener">Applied Intuition</a>. Georgia Tech '21. Also a pilot (PPL '24). Currently in NYC.</p>
                     <button class="meter" id="meter" type="button" aria-label="Replay bio generation" hidden>
                         <span class="meter-dot" aria-hidden="true"></span>
                         <span class="meter-text" id="meter-text"></span>
@@ -543,7 +543,7 @@
             <div class="row">
                 <div class="row-label">Hiring</div>
                 <div class="row-content">
-                    <p>My team is hiring. If you like making big models fast — kernels, batching, scheduling, squeezing every last token out of the fleet — take a look at <a href="https://www.anthropic.com/careers" target="_blank" rel="noopener">open roles</a> or <a data-clipboard="rohit.mittapalli@gmail.com" role="button" tabindex="0" aria-label="Copy email address to clipboard">email me</a>.</p>
+                    <p>My team is hiring. If you like making big models fast, check out the <a href="https://job-boards.greenhouse.io/anthropic/jobs/5418323008" target="_blank" rel="noopener">Performance Engineer, Inference Engine</a> role.</p>
                 </div>
             </div>
 
@@ -707,25 +707,6 @@
             setTimeout(() => stream(), 300);
             meter.addEventListener('click', () => stream());
         }
-
-        // Konami code — switches the bio to ludicrous speed
-        const konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiIndex = 0;
-
-        document.addEventListener('keydown', (e) => {
-            const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-            if (key === konami[konamiIndex]) {
-                konamiIndex++;
-                if (konamiIndex === konami.length) {
-                    konamiIndex = 0;
-                    document.querySelector('h1').textContent = 'Rohit "go zoom" Mittapalli';
-                    showToast('🎉 zoooom');
-                    if (tokens.length) stream(2000);
-                }
-            } else {
-                konamiIndex = key === konami[0] ? 1 : 0;
-            }
-        });
     </script>
 </body>
 </html>
